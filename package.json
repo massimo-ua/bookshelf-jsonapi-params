@@ -1,6 +1,6 @@
 {
-  "name": "bookshelf-jsonapi-params",
-  "version": "1.4.3",
+  "name": "@seo-booster/bookshelf-jsonapi-params",
+  "version": "1.4.4",
   "description": "Automatically applies relations, filters, and more from the JSON API spec to your Bookshelf.js results",
   "main": "./dist/index.js",
   "options": {
@@ -9,12 +9,12 @@
   "scripts": {
     "build": "babel -q -L -D ./src/ --out-dir ./dist/",
     "prepublish": "npm run clean && npm run build",
-    "test": "./node_modules/.bin/mocha $npm_package_options_mocha",
+    "test": "mocha $npm_package_options_mocha",
     "clean": "rm -rf dist/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/scoutforpets/bookshelf-jsonapi-params.git"
+    "url": "git@github.com:massimo-ua/bookshelf-jsonapi-params.git"
   },
   "keywords": [
     "bookshelf",
@@ -25,49 +25,44 @@
     "jsonb filtering",
     "relationship filtering"
   ],
-  "author": {
-    "name": "James Dixon",
-    "email": "jim.w.dixon@gmail.com",
-    "url": "https://github.com/jamesdixon"
-  },
+  "author": "James Dixon <jim.w.dixon@gmail.com> (https://github.com/jamesdixon)",
   "contributors": [
-    {
-      "name": "Alec Hirsch",
-      "email": "alech1215@gmail.com",
-      "url": "https://github.com/alechirsch"
-    }
+    "Alec Hirsch <alech1215@gmail.com> (https://github.com/alechirsch)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scoutforpets/bookshelf-jsonapi-params/issues"
+    "url": "https://github.com/massimo-ua/bookshelf-jsonapi-params/issues"
   },
-  "homepage": "https://github.com/scoutforpets/bookshelf-jsonapi-params",
+  "homepage": "https://github.com/massimo-ua/bookshelf-jsonapi-params",
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-plugin-add-module-exports": "0.2.1",
-    "chai": "4.2.0",
-    "eslint": "4.18.2",
-    "eslint-config-hapi": "9.1.0",
-    "eslint-plugin-hapi": "4.0.0",
-    "mocha": "6.2.0",
-    "babel-plugin-syntax-object-rest-spread": "6.13.0",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-es2015": "6.24.1",
-    "bluebird": "3.5.5",
-    "bookshelf": "0.15.1",
-    "knex": "0.19.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "bluebird": "^3.7.2",
+    "bookshelf": "^0.15.1",
+    "chai": "^4.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-hapi": "^9.1.0",
+    "@hapi/eslint-plugin-hapi": "^4.1.0",
+    "knex": "0.17.2",
+    "mocha": "^6.2.2",
     "pg": "^4.5.3",
-    "sqlite3": "4.0.9"
+    "sqlite3": "^4.1.1"
   },
   "engines": {
     "iojs": ">= 1.0.0",
     "node": ">= 0.10"
   },
   "dependencies": {
-    "bookshelf-page": "0.3.2",
+    "bookshelf-page": "^0.3.2",
     "inflection": "^1.12.0",
-    "lodash": "4.17.15",
+    "lodash": "^4.17.15",
     "split-string": "^4.0.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
