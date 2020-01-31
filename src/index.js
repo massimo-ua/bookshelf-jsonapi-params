@@ -99,17 +99,24 @@ export default (Bookshelf, options = {}) => {
         // Initialize an instance of the current model and clone the initial query
         internals.model =
             this.constructor.forge().query((qb) => _assign(qb, this.query().clone()));
-
+        /**
+         * Build a query for single filtering dependency object 
+         * @param   value {object}
+         * @param   relationHash {object}
+         */
         internals.buildObjectLikeFilterValue = (value, relationHash) => {
             if (!_isEmpty(value)){
-                
                 _forEach(value, (_, typeKey) => {
                     // Add relations to the relationHash
                     internals.buildDependenciesHelper(typeKey, relationHash);
                 });
             }
         };
-
+        /**
+         * Build a query for array of relational dependencies of filtering
+         * @param   filterList {array}
+         * @param   relationHash {object}
+         */
         internals.buildArrayLikeFilterValue = (filterList, relationHash) => {
             if (!_isEmpty(filterList)) {
                 _forEach(filterList, filter => {

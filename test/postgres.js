@@ -15,7 +15,6 @@ describe('bookshelf-jsonapi-params with postgresql', () => {
         connection: {
             host: 'localhost',
             user: 'postgres',
-            password: 'postgres',
             database: 'bookshelf_jsonapi_test',
             charset: 'utf8',
             port: 5432
@@ -584,9 +583,6 @@ describe('bookshelf-jsonapi-params with postgresql', () => {
                 .fetchJsonApi({
                     include: ['pet.toy'],
                     filter: {
-                                // like: {
-                                //     'pet.toy.type': 'skat'
-                                // }
                         or: [
                             {
                                 like: {
@@ -599,10 +595,8 @@ describe('bookshelf-jsonapi-params with postgresql', () => {
                     sort: ['id']
                 })
                 .then((result) => {
-
-                    // expect(result.models).to.have.length(2);
                     expect(result.models[0].related('pet').related('toy').get('type')).to.equal('skate');
-                    // expect(result.models[1].get('type')).to.equal('monster');
+                    expect(result.models[1].get('type')).to.equal('monster');
                     done();
                 });
         });
