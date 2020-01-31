@@ -15,6 +15,7 @@ describe('bookshelf-jsonapi-params with postgresql', () => {
         connection: {
             host: 'localhost',
             user: 'postgres',
+            password: 'postgres',
             database: 'bookshelf_jsonapi_test',
             charset: 'utf8',
             port: 5432
@@ -573,6 +574,35 @@ describe('bookshelf-jsonapi-params with postgresql', () => {
                     expect(result.models).to.have.length(2);
                     expect(result.models[0].get('firstName')).to.equal('Barney');
                     expect(result.models[1].get('firstName')).to.equal('Cookie Monster');
+                    done();
+                });
+        });
+
+        it('should return results for "or" filters for nested objects', (done) => {
+            repository.Models.PersonModel
+                .forge()
+                .fetchJsonApi({
+                    include: ['pet.toy'],
+                    filter: {
+                                // like: {
+                                //     'pet.toy.type': 'skat'
+                                // }
+                        or: [
+                            {
+                                like: {
+                                    'pet.toy.type': 'skat'
+                                }
+                            },
+                            {type: 'monster'},
+                        ]
+                    },
+                    sort: ['id']
+                })
+                .then((result) => {
+
+                    // expect(result.models).to.have.length(2);
+                    expect(result.models[0].related('pet').related('toy').get('type')).to.equal('skate');
+                    // expect(result.models[1].get('type')).to.equal('monster');
                     done();
                 });
         });

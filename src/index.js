@@ -102,19 +102,25 @@ export default (Bookshelf, options = {}) => {
 
         internals.buildObjectLikeFilterValue = (value, relationHash) => {
             if (!_isEmpty(value)){
+                
                 _forEach(value, (_, typeKey) => {
-
                     // Add relations to the relationHash
                     internals.buildDependenciesHelper(typeKey, relationHash);
                 });
             }
         };
 
-        internals.buildArrayLikeFilterValue = (values, relationHash) => {
-            if (!_isEmpty(values)) {
-                _forEach(values, value => {
-                    if (_isPlainObject(value)) {
-                        internals.buildObjectLikeFilterValue(value, relationHash);
+        internals.buildArrayLikeFilterValue = (filterList, relationHash) => {
+            if (!_isEmpty(filterList)) {
+                _forEach(filterList, filter => {
+                    if (_isPlainObject(filter)) {
+                        _forEach(filter, (typeValue, typeKey) => {
+                            if (_isPlainObject(typeValue)) {
+                                internals.buildObjectLikeFilterValue(typeValue, relationHash);
+                            } else {
+                                internals.buildDependenciesHelper(typeKey, relationHash);
+                            }
+                        });
                     }
                 });
             }
